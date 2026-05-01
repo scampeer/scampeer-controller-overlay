@@ -1,0 +1,163 @@
+/*
+  SCAMPEER custom GamepadViewer skin - starter CSS
+  Put this CSS file and scampeer_controller_overlay_transparent.png in the same hosted folder.
+  Use: https://gamepadviewer.com/?p=1&css=https://YOUR-HOST/scampeer-controller.css
+
+  This uses the artwork as the base and adds red glow overlays for pressed buttons/sticks.
+  Small coordinate tweaks may be needed depending on OBS scaling and browser render.
+*/
+
+.controller.custom {
+  width: 1254px;
+  height: 1254px;
+  background: url("scampeer_controller_overlay_transparent.png") center center / contain no-repeat;
+  position: relative;
+}
+
+/* Hide everything when disconnected except the shell art. */
+.custom.disconnected div {
+  display: none;
+}
+
+/* Make GPV containers cover the whole image so we can position controls directly. */
+.custom .abxy,
+.custom .dpad,
+.custom .sticks,
+.custom .arrows,
+.custom .bumpers,
+.custom .triggers {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1254px;
+  height: 1254px;
+  pointer-events: none;
+}
+
+/* Face buttons: glow when pressed */
+.custom .button {
+  position: absolute;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 70ms linear, transform 70ms linear;
+  box-shadow: 0 0 24px rgba(255, 255, 255, .45), 0 0 42px currentColor;
+  background: radial-gradient(circle, currentColor 0%, rgba(255,255,255,.15) 45%, rgba(255,255,255,0) 72%);
+}
+.custom .button.pressed {
+  opacity: .78;
+  transform: scale(.92);
+}
+
+.custom .y { left: 852px; top: 391px; color: #ffe600; }
+.custom .x { left: 795px; top: 464px; color: #1f9dff; }
+.custom .b { left: 956px; top: 464px; color: #ff2020; }
+.custom .a { left: 886px; top: 552px; color: #42e35a; }
+
+/* D-pad press glows */
+.custom .face {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 70ms linear, transform 70ms linear;
+  background: rgba(255, 0, 0, .35);
+  box-shadow: 0 0 18px rgba(255, 0, 0, .85);
+}
+.custom .face.pressed {
+  opacity: .8;
+  transform: scale(.94);
+}
+.custom .face.up,
+.custom .face.down {
+  width: 62px;
+  height: 86px;
+  left: 456px;
+  border-radius: 14px;
+}
+.custom .face.left,
+.custom .face.right {
+  width: 86px;
+  height: 62px;
+  top: 673px;
+  border-radius: 14px;
+}
+.custom .face.up { top: 621px; }
+.custom .face.down { top: 719px; }
+.custom .face.left { left: 396px; }
+.custom .face.right { left: 493px; }
+
+/* Sticks: GamepadViewer JS moves these with inline transforms. */
+.custom .stick {
+  position: absolute;
+  width: 154px;
+  height: 154px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.08), rgba(255,0,0,.22) 58%, rgba(255,0,0,0) 70%);
+  box-shadow: 0 0 28px rgba(255,0,0,.55);
+  opacity: .36;
+  transition: opacity 70ms linear;
+}
+.custom .stick.pressed {
+  opacity: .75;
+  box-shadow: 0 0 34px rgba(255,255,255,.55), 0 0 52px rgba(255,0,0,.9);
+}
+.custom .stick.left { left: 230px; top: 438px; }
+.custom .stick.right { left: 686px; top: 590px; }
+
+/* Back / start / menu buttons */
+.custom .back,
+.custom .start {
+  position: absolute;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  opacity: 0;
+  background: rgba(255,255,255,.30);
+  box-shadow: 0 0 22px rgba(255,255,255,.85);
+}
+.custom .back.pressed,
+.custom .start.pressed {
+  opacity: .85;
+  transform: scale(.9);
+}
+.custom .back { left: 497px; top: 526px; }
+.custom .start { left: 681px; top: 526px; }
+
+/* Bumpers / triggers: red upper-edge glow when pressed */
+.custom .bumper,
+.custom .trigger {
+  position: absolute;
+  width: 210px;
+  height: 82px;
+  opacity: 0;
+  background: linear-gradient(180deg, rgba(255,0,0,.45), rgba(255,0,0,0));
+  box-shadow: 0 0 30px rgba(255,0,0,.65);
+  border-radius: 24px;
+}
+.custom .bumper.pressed,
+.custom .trigger.pressed {
+  opacity: .75;
+}
+.custom .bumper.left,
+.custom .trigger.left {
+  left: 235px;
+  top: 190px;
+}
+.custom .bumper.right,
+.custom .trigger.right {
+  left: 810px;
+  top: 190px;
+}
+
+/* Player indicator / quadrant: optional glow around the center squares */
+.custom .quadrant {
+  position: absolute;
+  left: 602px;
+  top: 611px;
+  width: 58px;
+  height: 58px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.18);
+  box-shadow: 0 0 18px rgba(255,255,255,.65);
+  opacity: .35;
+}
