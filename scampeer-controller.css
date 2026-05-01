@@ -10,7 +10,7 @@
 .controller.custom {
   width: 1254px;
   height: 1254px;
-  background: url("scampeer_controller_overlay_transparent.png") center center / contain no-repeat;
+  background: url("https://cdn.jsdelivr.net/gh/scampeer/scampeer-controller-overlay@main/scampeer_controller_overlay_transparent.png") center center / contain no-repeat;
   position: relative;
 }
 
